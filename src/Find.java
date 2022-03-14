@@ -1,34 +1,35 @@
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 
 public class Find {
 
-    private String text;
+    private final String text;
+
     public Find(String text) {
         this.text = text;
     }
+
     public boolean match(String pattern) {
-        String[] textChars = new String[this.text.length()];
-        textChars = text.split("");
-
-        //Creamos una array de strings que en cada posición contendrá un caracter.
-
-        System.out.println(Arrays.toString(textChars));
-
-        String[] patternarr = pattern.split("");
-        System.out.println(Arrays.toString(patternarr));
-
-
-        for (int i = 0; i < this.text.length(); i++) {
-            for (int j = 0; j < patternarr.length; j++) {
-                if (textChars[i].equals(patternarr[j])){
-                    if (textChars[i+1].equals(patternarr[j+1])){
-                        return true;
-                    }
-                }
-            }
+//        int checked = 0;
+//        for (int i = 0; i < pattern.length(); i++) {
+//            for (int j = 0; j < this.text.length(); j++) {
+//
+//                if (pattern.charAt(i) == this.text.charAt(j)){
+//                    checked++;
+//                } else continue;
+//            }
+//        }
+        if (Objects.equals(text, "")){
+            return false;
         }
+        if (this.text.contains(pattern)) return true;
+
+
+
         return false;
     }
+
 }
+
