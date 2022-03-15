@@ -14,7 +14,7 @@ public class FindTest {
         assertEquals(false, f.match("xet"));
         assertEquals(false, f.match("Liceuu"));
         assertEquals(true, f.match("Liceu"));
-        //assertEquals(false, f.match(""));
+        assertEquals(false, f.match(""));
 
         f = new Find("Esternocleidomastoideo");
         assertEquals(true, f.match("Ester"));
