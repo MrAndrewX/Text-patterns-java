@@ -1,15 +1,16 @@
 public class Component{
-    enum TipusComponents{
-        NORMALCHAR,
-        QMARK,
-        LBEGIN,
-        LINEEND,
-        CONJUNTOCHARS,
-        CLOSURE
-    }
-    TipusComponents tcomponent;
-    char c;  // Caracter normal
-    char[] rango; //Define un rango [---] aqui guardaremos todos los datos del rango
+
+    enum TComponent{
+        NORMALCHAR, // Si es un caracter normal
+        QMARK, //Si es interrogante
+        LBEGIN, //Si es comienzo de linea
+        LINEEND, //Si es final de linea
+        CONJUNTOCHARS, // Conjunto de chars entre corchetes [-----]
+        CLOSURE //
+    };
+    TComponent tipo;
+    char caracter;  // Caracter normal
+    char[] rango;
 
 
 }

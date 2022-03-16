@@ -4,10 +4,11 @@ import java.util.Objects;
 
 public class Find {
 
-    private final String text;
+
 
     public Find(String text) {
-        this.text = text;
+        Pattern patro = new Pattern(text);
+
 
     }
 
