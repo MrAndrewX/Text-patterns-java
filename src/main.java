@@ -1,7 +1,7 @@
 public class main {
     public static void main(String[] args) {
-        Find find = new Find("Li");
-        find.match("11@?");
+        Find find = new Find("a");
+        find.match("a");
 
     }
 }

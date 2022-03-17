@@ -34,5 +34,21 @@ public class Caixa<T> {
             this.objectArray[this.nobj] = o;
             this.nobj++;
         }
+    public void remove(int pos) {
+        if (pos < this.nobj) {
+            for (int i = pos; i < nobj-1; i++) {
+                objectArray[i] = objectArray[i+1];
+            }
+            objectArray[this.nobj-1] = null;
+            this.nobj--;
+        }
+    }
+
+    public T get(int pos) {
+        if (pos < this.nobj) {
+            return (T) objectArray[pos];
+        }
+        throw new RuntimeException("Posició inexistent");
+    }
 
     }

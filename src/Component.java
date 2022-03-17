@@ -9,6 +9,7 @@ public class Component{
         CLOSURE //* => 0 o más | + => 1 o más
     };
     TComponent tipo;
+
     char caracter;  // Caracter normal
     char[] rango;
 

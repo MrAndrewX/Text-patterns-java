@@ -1,12 +1,10 @@
 import java.util.LinkedList;
 
 public class Pattern {
-    Caixa<Component> components = new Caixa<>();
+    public Caixa<Component> components = new Caixa<>();
 
-    public static int normalchars = 0;
     public Pattern(String strpattern){
         for (int i = 0; i < strpattern.length(); i++) {
-            normalchars++;
             char c = strpattern.charAt(i);
             if (c == '?'){
                 Component component = new Component();
@@ -29,15 +27,14 @@ public class Pattern {
                 component.tipo = Component.TComponent.CLOSURE;
                 components.addElement(component);
             }else {
+                System.out.println("Es normal!");
                 Component component = new Component();
                 component.tipo = Component.TComponent.NORMALCHAR;
                 components.addElement(component);
-
-            }
+           }
 
 
         }
-        System.out.printf("nObjPattern: %d \n", normalchars);
     }
 
 
