@@ -5,7 +5,7 @@ public class Caixa<T> {
         private int capacity = 0;
 
         public Caixa() {
-            objectArray = new Object[2];
+            objectArray = new Object[5];
             capacity = 2;
         }
 
@@ -22,9 +22,11 @@ public class Caixa<T> {
             if (this.nobj == this.capacity) {
                 int newCapacity = this.capacity*2;
                 Object[] newArray = new Object[newCapacity];
+
                 for(int i=0; i<this.capacity; i++) {
                     newArray[i] = this.objectArray[i];
                 }
+
                 this.objectArray = newArray;
                 this.capacity = newCapacity;
                 System.out.println("Hem ampliat la capacitat: " + newCapacity);
