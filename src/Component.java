@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class Component{
 
     enum TComponent{
@@ -13,5 +15,12 @@ public class Component{
     char caracter;  // Caracter normal
     char[] rango;
 
-
+    @Override
+    public String toString() {
+        return "Component{" +
+                "tipo=" + tipo +
+                ", caracter=" + caracter +
+                ", rango=" + Arrays.toString(rango) +
+                '}';
+    }
 }
