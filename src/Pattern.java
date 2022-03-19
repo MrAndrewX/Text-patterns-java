@@ -6,13 +6,14 @@ public class Pattern {
     public Pattern(String strpattern){
         for (int i = 0; i < strpattern.length(); i++) {
             char c = strpattern.charAt(i);
-            if (c == '?'){
-                Component component = new Component();
-                component.tipo = Component.TComponent.QMARK;
-                components.addElement(component);
-            }else if (c == '%'){
+            if (strpattern.charAt(0) == '%'){
                 Component component = new Component();
                 component.tipo = Component.TComponent.LBEGIN;
+                components.addElement(component);
+
+            }if (c == '?'){
+                Component component = new Component();
+                component.tipo = Component.TComponent.QMARK;
                 components.addElement(component);
             }else if (c == '$'){
                 Component component = new Component();

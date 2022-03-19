@@ -36,8 +36,8 @@ public class FindTest {
         Find f = new Find("a?b");
         assertTrue(f.match("a@?b"));
 
-//        f = new Find("bill.gates@microsoft.com");
-//        assertTrue(f.match("s@@micro"));
+        f = new Find("bill.gates@microsoft.com");
+        assertTrue(f.match("s@@micro"));
 
        f = new Find("ho[az]");
        assertTrue(f.match("o@["));

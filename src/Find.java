@@ -20,9 +20,10 @@ public class Find {
         System.out.println(patt.components);
         for (int i = 0; i < this.text.length(); i++) {
             char caracter = this.text.charAt(i);
-            if (caracter == '@'){
-                indicePattern++;
-            }
+
+
+
+
             if (isMatching(patt.components.get(indicePattern),caracter)){
                 indicePattern++;
                 System.out.println("Match!");
@@ -51,7 +52,7 @@ public class Find {
     }
 
     private boolean containsScapedCaracter(String pattern) {
-        if (pattern.contains("@")){
+        if (pattern.contains("@") || pattern.contains("%")){
             return true;
         }
         return false;
@@ -61,9 +62,12 @@ public class Find {
         System.out.println("Componente caracter: " + component.caracter + " caracter: "+caracter);
 
         switch (component.tipo) {
+            case LBEGIN -> {return true;}
             case QMARK -> { return true; }
             case NORMALCHAR -> { return component.caracter == caracter; }
-
+            case LINEEND -> {}
+            case CONJUNTOCHARS -> {}
+            case CLOSURE -> {}
         }
 
 
