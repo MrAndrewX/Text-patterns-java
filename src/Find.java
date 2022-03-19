@@ -20,7 +20,9 @@ public class Find {
         System.out.println(patt.components);
         for (int i = 0; i < this.text.length(); i++) {
             char caracter = this.text.charAt(i);
-
+            if (caracter == '@'){
+                indicePattern++;
+            }
             if (isMatching(patt.components.get(indicePattern),caracter)){
                 indicePattern++;
                 System.out.println("Match!");
@@ -28,11 +30,31 @@ public class Find {
                 i-=indicePattern;
                 indicePattern = 0;
             }
-
-
+            if (containsScapedCaracter(pattern)){
+               if(IndexesMatches(indicePattern,pattern.length()-1)){
+                   return true;
+               }
+            }
+            if (IndexesMatches(indicePattern,pattern.length())){
+                return true;
+            }
        }
 
     return false;
+    }
+
+    private boolean IndexesMatches(int indicePattern, int length) {
+        if (indicePattern == length){
+            return true;
+        }
+        return false;
+    }
+
+    private boolean containsScapedCaracter(String pattern) {
+        if (pattern.contains("@")){
+            return true;
+        }
+        return false;
     }
 
     private boolean isMatching(Component component, char caracter) {
