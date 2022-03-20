@@ -1,5 +1,3 @@
-
-
 public class Find {
 
 
@@ -12,10 +10,10 @@ public class Find {
     }
 
     public boolean match(String pattern) {
-    Pattern patt = new Pattern(pattern);
-    int indicePattern = 0;
-    //Si el pattern esta vacio devolvemos 0
-    if (pattern.length() == 0){return false;}
+        Pattern patt = new Pattern(pattern);
+        int indicePattern = 0;
+        //Si el pattern esta vacio devolvemos 0
+        if (pattern.length() == 0){return false;}
 
         System.out.println(patt.components);
         for (int i = 0; i < this.text.length(); i++) {
@@ -32,16 +30,27 @@ public class Find {
                 indicePattern = 0;
             }
             if (containsScapedCaracter(pattern)){
-               if(IndexesMatches(indicePattern,pattern.length()-1)){
-                   return true;
-               }
+                int contadorArrobas = arrobas(pattern);
+                if(IndexesMatches(indicePattern,pattern.length()-contadorArrobas)){
+                    return true;
+                }
             }
             if (IndexesMatches(indicePattern,pattern.length())){
                 return true;
             }
-       }
+        }
 
-    return false;
+        return false;
+    }
+
+    private int arrobas(String pattern) {
+        int numarrobas = 0;
+        for (int i = 0; i < pattern.length(); i++) {
+            if (pattern.charAt(i) == '@'){
+                numarrobas++;
+            }
+        }
+        return numarrobas;
     }
 
     private boolean IndexesMatches(int indicePattern, int length) {
@@ -52,7 +61,7 @@ public class Find {
     }
 
     private boolean containsScapedCaracter(String pattern) {
-        if (pattern.contains("@") || pattern.contains("%")){
+        if (pattern.contains("@")){
             return true;
         }
         return false;
@@ -62,7 +71,7 @@ public class Find {
         System.out.println("Componente caracter: " + component.caracter + " caracter: "+caracter);
 
         switch (component.tipo) {
-            case LBEGIN -> {return true;}
+            case LBEGIN -> {}
             case QMARK -> { return true; }
             case NORMALCHAR -> { return component.caracter == caracter; }
             case LINEEND -> {}
@@ -79,8 +88,9 @@ public class Find {
         }
 
 
-        }
     }
 
-
-
+    public Object capture(String bbc) {
+        return bbc;
+    }
+}

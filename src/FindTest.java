@@ -42,15 +42,15 @@ public class FindTest {
        f = new Find("ho[az]");
        assertTrue(f.match("o@["));
      assertTrue(f.match("z@]"));
-//
-//        f = new Find("stars*d+");
-//        assertTrue(f.match("s@*"));
-//        assertTrue(f.match("@*d@+"));
-//       assertTrue(f.match("ars@*"));
 
-//        f = new Find("%hello$");
-  //      assertTrue(f.match("@%"));
-//        assertTrue(f.match("@$"));
+       f = new Find("stars*d+");
+        assertTrue(f.match("s@*"));
+       assertTrue(f.match("@*d@+"));
+       assertTrue(f.match("ars@*"));
+
+        f = new Find("%hello$");
+        assertTrue(f.match("@%"));
+        assertTrue(f.match("@$"));
 
     }
 
@@ -169,40 +169,40 @@ public class FindTest {
         assertFalse(f.match("14*9$"));
     }
 
-//    @Test
-//    public void captures() {
-//        Find f = new Find("aabbcc");
-//        assertEquals("bbc", f.capture("bbc"));
-//        assertEquals("bbc", f.capture("??c"));
-//        assertEquals("bcc", f.capture("??c$"));
-//        assertNull(null, f.capture("bcd"));
-//        assertEquals("abbc", f.capture("a[abc][abc]c"));
-//        assertEquals("aa", f.capture("%[abc][abc]"));
-//        assertEquals("cc", f.capture("[abc][abc]$"));
-//        assertEquals("abbc", f.capture("[ac][ab][ab][ac]"));
-//        assertEquals("aabb", f.capture("[ac][ab][bc][ab]"));
-//        assertNull(f.capture("[abc][ab]$"));
-//
-//        f = new Find("12333333333668");
-//        assertEquals("2333333333668", f.capture("23*6*8"));
-//        assertEquals("12333333333668", f.capture("?*"));
-//        assertEquals("1233333333366", f.capture("1?*6"));
-//        assertEquals("1233333333366", f.capture("[123]?*3?+6"));
-//        assertEquals("23333333336", f.capture("[2368]*[238]6"));
-//        assertEquals("2333333333668", f.capture("[2368]*"));
-//        assertEquals("12333333333", f.capture("1[23]*"));
-//        assertEquals("23", f.capture("2[6]*3"));
-//        assertNull(f.capture("2[6]+3"));
-//
-//        f = new Find("?*.+%$");
-//        assertEquals("?*.", f.capture("??."));
-//        assertEquals(".", f.capture("@?*."));
-//        assertNull(f.capture("@?+."));
-//        assertEquals("%$", f.capture("@%@$$"));
-//        assertEquals(".+%", f.capture(".?+%"));
-//        assertEquals("?*.+", f.capture("[?*.]*@+"));
-//        assertEquals("*.+%$", f.capture("@*?*$"));
-//        assertNull(f.capture("%??.*$"));
-  //  }
+    @Test
+    public void captures() {
+        Find f = new Find("aabbcc");
+        assertEquals("bbc", f.capture("bbc"));
+        assertEquals("bbc", f.capture("??c"));
+        assertEquals("bcc", f.capture("??c$"));
+        assertNull(null, f.capture("bcd"));
+        assertEquals("abbc", f.capture("a[abc][abc]c"));
+        assertEquals("aa", f.capture("%[abc][abc]"));
+        assertEquals("cc", f.capture("[abc][abc]$"));
+        assertEquals("abbc", f.capture("[ac][ab][ab][ac]"));
+        assertEquals("aabb", f.capture("[ac][ab][bc][ab]"));
+        assertNull(f.capture("[abc][ab]$"));
+
+        f = new Find("12333333333668");
+        assertEquals("2333333333668", f.capture("23*6*8"));
+        assertEquals("12333333333668", f.capture("?*"));
+        assertEquals("1233333333366", f.capture("1?*6"));
+        assertEquals("1233333333366", f.capture("[123]?*3?+6"));
+        assertEquals("23333333336", f.capture("[2368]*[238]6"));
+        assertEquals("2333333333668", f.capture("[2368]*"));
+        assertEquals("12333333333", f.capture("1[23]*"));
+        assertEquals("23", f.capture("2[6]*3"));
+        assertNull(f.capture("2[6]+3"));
+
+        f = new Find("?*.+%$");
+        assertEquals("?*.", f.capture("??."));
+        assertEquals(".", f.capture("@?*."));
+        assertNull(f.capture("@?+."));
+        assertEquals("%$", f.capture("@%@$$"));
+        assertEquals(".+%", f.capture(".?+%"));
+        assertEquals("?*.+", f.capture("[?*.]*@+"));
+        assertEquals("*.+%$", f.capture("@*?*$"));
+        assertNull(f.capture("%??.*$"));
+    }
 
 }
