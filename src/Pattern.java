@@ -6,26 +6,27 @@ public class Pattern {
     public Pattern(String strpattern){
         for (int i = 0; i < strpattern.length(); i++) {
             char c = strpattern.charAt(i);
-            if (strpattern.charAt(0) == '%'){
+            if (c == '%' && i == 0){
                 Component component = new Component();
                 component.tipo = Component.TComponent.LBEGIN;
-                components.addElement(component);
 
-            }if (c == '?'){
+            }else if (c == '?'){
                 Component component = new Component();
                 component.tipo = Component.TComponent.QMARK;
                 components.addElement(component);
-            }else if (c == '$'){
+            }else if (c == '$' && i == strpattern.length()-1){
                 Component component = new Component();
                 component.tipo = Component.TComponent.LINEEND;
-                components.addElement(component);
+
             }else if (c == '['){
                 Component component = new Component();
                 component.tipo = Component.TComponent.CONJUNTOCHARS;
+                component.caracter = c;
                 components.addElement(component);
             }else if (c == '+' || c == '*'){
                 Component component = new Component();
                 component.tipo = Component.TComponent.CLOSURE;
+                component.caracter = c;
                 components.addElement(component);
             }else {
                 if (c == '@'){

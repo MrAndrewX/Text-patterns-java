@@ -11,81 +11,61 @@ public class Find {
 
     public boolean match(String pattern) {
         Pattern patt = new Pattern(pattern);
-        int indicePattern = 0;
-        //Si el pattern esta vacio devolvemos 0
-        if (pattern.length() == 0){return false;}
 
-        System.out.println(patt.components);
-        for (int i = 0; i < this.text.length(); i++) {
+
+        //Si el pattern esta vacio devolvemos 0
+        if (pattern.length() == 0){
+            return false;
+        }
+        int indicePattern = 0;
+
+        for (int i = 0; i < this.text.length();i++) {
             char caracter = this.text.charAt(i);
 
-
-
-
-            if (isMatching(patt.components.get(indicePattern),caracter)){
+//            if (pattern.charAt(0) == '%' && i == 0){
+//                indicePattern++;
+//            }
+            System.out.println("Comparando text char:: "+caracter+" Con patt char: "+pattern.charAt(indicePattern));
+            if (matchText(patt.components.get(indicePattern),caracter)){
                 indicePattern++;
-                System.out.println("Match!");
+                System.out.println("Match");
+
             }else{
+
+                if (pattern.charAt(0) == '%' && !matchText(patt.components.get(indicePattern),caracter)){
+                    return false;
+
+                }
+                if (pattern.charAt(pattern.length()-1) == '$' && indicePattern == patt.components.size()-1){
+                    return true;
+                }
                 i-=indicePattern;
                 indicePattern = 0;
             }
-            if (containsScapedCaracter(pattern)){
-                int contadorArrobas = arrobas(pattern);
-                if(IndexesMatches(indicePattern,pattern.length()-contadorArrobas)){
+
+                // Si la longitud del indice y el de numero de componentes coinciden
+                if (indicePattern == patt.components.size()){
                     return true;
                 }
-            }
-            if (IndexesMatches(indicePattern,pattern.length())){
-                return true;
-            }
+
+
+
         }
 
         return false;
     }
 
-    private int arrobas(String pattern) {
-        int numarrobas = 0;
-        for (int i = 0; i < pattern.length(); i++) {
-            if (pattern.charAt(i) == '@'){
-                numarrobas++;
-            }
-        }
-        return numarrobas;
-    }
-
-    private boolean IndexesMatches(int indicePattern, int length) {
-        if (indicePattern == length){
-            return true;
-        }
-        return false;
-    }
-
-    private boolean containsScapedCaracter(String pattern) {
-        if (pattern.contains("@")){
-            return true;
-        }
-        return false;
-    }
-
-    private boolean isMatching(Component component, char caracter) {
-        System.out.println("Componente caracter: " + component.caracter + " caracter: "+caracter);
-
+    private boolean matchText(Component component, char caracter) {
         switch (component.tipo) {
-            case LBEGIN -> {}
+            case LBEGIN, LINEEND -> {return caracter == component.caracter;}
             case QMARK -> { return true; }
             case NORMALCHAR -> { return component.caracter == caracter; }
-            case LINEEND -> {}
             case CONJUNTOCHARS -> {}
             case CLOSURE -> {}
         }
 
 
-        if (((component.caracter) == caracter)){
-
-            return true;
-        }else{
-            return false;
-        }
+        return false;
 
 
     }
