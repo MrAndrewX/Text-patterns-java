@@ -45,6 +45,9 @@ public class Find {
 
                 // Si la longitud del indice y el de numero de componentes coinciden
                 if (indicePattern == patt.components.size()){
+                    if (pattern.charAt(pattern.length()-1) == '$' && i != text.length()-1){
+                        return false;
+                    }
                     return true;
                 }
 

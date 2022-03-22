@@ -2,14 +2,15 @@ import java.util.LinkedList;
 
 public class Pattern {
     Caixa<Component> components = new Caixa<>();
-
+    boolean containsBline = false;
+    boolean containsEline = false;
     public Pattern(String strpattern){
         for (int i = 0; i < strpattern.length(); i++) {
             char c = strpattern.charAt(i);
             if (c == '%' && i == 0){
                 Component component = new Component();
                 component.tipo = Component.TComponent.LBEGIN;
-
+                containsBline = true;
             }else if (c == '?'){
                 Component component = new Component();
                 component.tipo = Component.TComponent.QMARK;
@@ -17,7 +18,7 @@ public class Pattern {
             }else if (c == '$' && i == strpattern.length()-1){
                 Component component = new Component();
                 component.tipo = Component.TComponent.LINEEND;
-
+                containsEline = true;
             }else if (c == '['){
                 Component component = new Component();
                 component.tipo = Component.TComponent.CONJUNTOCHARS;
