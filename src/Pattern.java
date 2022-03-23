@@ -65,8 +65,19 @@ public class Pattern {
         String result = "";
         for (int i = 0; i < charclases.length(); i++) {
             char c = charclases.charAt(i);
+
             if (c == '[' || c == ']'){
                 continue;
+            }
+            if (i != charclases.length()-1){
+                if (charclases.charAt(i+1) == '-') {
+                    for (int j = 0; j < charclases.charAt(i+2)-charclases.charAt(i); j++) {
+                        result += c++;
+                    }
+
+
+                }
+
             }
             result += c;
 
