@@ -4,33 +4,45 @@ public class Pattern {
     Caixa<Component> components = new Caixa<>();
     boolean containsBline = false;
     boolean containsEline = false;
-    public Pattern(String strpattern){
+
+    public Pattern(String strpattern) {
         for (int i = 0; i < strpattern.length(); i++) {
             char c = strpattern.charAt(i);
-            if (c == '%' && i == 0){
+            if (c == '%' && i == 0) {
                 Component component = new Component();
                 component.tipo = Component.TComponent.LBEGIN;
                 containsBline = true;
-            }else if (c == '?'){
+            } else if (c == '?') {
                 Component component = new Component();
                 component.tipo = Component.TComponent.QMARK;
                 components.addElement(component);
-            }else if (c == '$' && i == strpattern.length()-1){
+            } else if (c == '$' && i == strpattern.length() - 1) {
                 Component component = new Component();
                 component.tipo = Component.TComponent.LINEEND;
                 containsEline = true;
-            }else if (c == '['){
+            } else if (c == '[') {
                 Component component = new Component();
                 component.tipo = Component.TComponent.CONJUNTOCHARS;
-                component.caracter = c;
+                String charclases = "";
+
+                for (int j = i; c != ']'; j++) {
+                    c = strpattern.charAt(i);
+                    charclases += c;
+                    i = j;
+                }
+                i--;
+
+                charclases = beautfierCharClases(charclases);
+                component.rango = charclases.toCharArray();
                 components.addElement(component);
-            }else if (c == '+' || c == '*'){
+
+            } else if (c == '+' || c == '*') {
                 Component component = new Component();
                 component.tipo = Component.TComponent.CLOSURE;
                 component.caracter = c;
                 components.addElement(component);
-            }else {
-                if (c == '@'){
+            } else {
+                if (c == '@') {
                     i++;
                     c = strpattern.charAt(i);
                 }
@@ -38,8 +50,9 @@ public class Pattern {
                 component.tipo = Component.TComponent.NORMALCHAR;
                 component.caracter = c;
                 components.addElement(component);
-           }
+            }
         }
+
 
         System.out.println("List comp:");
         for (int i = 0; i < components.size(); i++) {
@@ -48,5 +61,16 @@ public class Pattern {
 
     }
 
+    private String beautfierCharClases(String charclases) {
+        String result = "";
+        for (int i = 0; i < charclases.length(); i++) {
+            char c = charclases.charAt(i);
+            if (c == '[' || c == ']'){
+                continue;
+            }
+            result += c;
 
+        }
+        return result;
+    }
 }

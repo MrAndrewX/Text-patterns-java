@@ -12,19 +12,18 @@ public class Find {
     public boolean match(String pattern) {
         Pattern patt = new Pattern(pattern);
 
-
         //Si el pattern esta vacio devolvemos 0
         if (pattern.length() == 0){
             return false;
         }
+
+        //Este contador iterará solo sobre el pattern.
         int indicePattern = 0;
 
         for (int i = 0; i < this.text.length();i++) {
             char caracter = this.text.charAt(i);
 
-//            if (pattern.charAt(0) == '%' && i == 0){
-//                indicePattern++;
-//            }
+
             System.out.println("Comparando text char:: "+caracter+" Con patt char: "+pattern.charAt(indicePattern));
             if (matchText(patt.components.get(indicePattern),caracter)){
                 indicePattern++;
@@ -63,7 +62,14 @@ public class Find {
             case LBEGIN, LINEEND -> {return caracter == component.caracter;}
             case QMARK -> { return true; }
             case NORMALCHAR -> { return component.caracter == caracter; }
-            case CONJUNTOCHARS -> {}
+            case CONJUNTOCHARS -> {
+                for (int i = 0; i < component.rango.length; i++) {
+                    if (caracter == component.rango[i]){
+                        return true;
+                    }
+                }
+                return false;
+            }
             case CLOSURE -> {}
         }
 
